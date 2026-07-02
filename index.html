@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#181d4e" />
+
+    <title>Vyra Health — Weight loss, reviewed by clinicians</title>
+    <meta
+      name="description"
+      content="Clinician-reviewed GLP-1 weight loss treatments — same active ingredients as the brand names, at a fair price. (Practice clone project, not a real clinic.)"
+    />
+    <!-- NOTE: replace https://www.vyrahealth.example with the production origin. -->
+    <link rel="canonical" href="https://www.vyrahealth.example/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vyra Health" />
+    <meta property="og:title" content="Vyra Health — Weight loss, reviewed by clinicians" />
+    <meta
+      property="og:description"
+      content="Clinician-reviewed GLP-1 weight loss treatments — same active ingredients as the brand names, at a fair price."
+    />
+    <meta property="og:url" content="https://www.vyrahealth.example/" />
+    <meta property="og:image" content="https://www.vyrahealth.example/images/hero-imgnew.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vyra Health — Weight loss, reviewed by clinicians" />
+    <meta
+      name="twitter:description"
+      content="Clinician-reviewed GLP-1 weight loss treatments — same active ingredients as the brand names, at a fair price."
+    />
+    <meta name="twitter:image" content="https://www.vyrahealth.example/images/hero-imgnew.png" />
+
+    <!-- Fonts: preconnect + swap so text renders immediately with a fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@200;300;400;500;600;700&family=Red+Hat+Text:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- The hero/LCP image is prioritised at the element level via
+         fetchpriority="high" + eager loading (see SmartImage `priority`),
+         which avoids wasting the fetch on the SPA's non-home routes. -->
+
+    <!-- Organization + WebSite structured data (site-wide, static) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.vyrahealth.example/#organization",
+            "name": "Vyra Health",
+            "url": "https://www.vyrahealth.example/",
+            "logo": "https://www.vyrahealth.example/favicon.svg",
+            "description": "Clinician-reviewed GLP-1 weight loss treatments."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.vyrahealth.example/#website",
+            "url": "https://www.vyrahealth.example/",
+            "name": "Vyra Health",
+            "publisher": { "@id": "https://www.vyrahealth.example/#organization" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

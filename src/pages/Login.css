@@ -1,0 +1,187 @@
+.patient-login {
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-7) var(--space-5);
+  background: var(--bg);
+}
+.patient-login__card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  box-shadow: 0 10px 40px rgba(24, 24, 21, 0.06);
+}
+.patient-login__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: var(--space-5);
+}
+.patient-login__beta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  color: var(--cream-50);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+}
+.patient-login__title {
+  text-align: center;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: var(--space-5);
+}
+.patient-login__sub {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-5);
+}
+.patient-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.patient-login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.patient-login__field label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.patient-login__field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: var(--text-base);
+  color: var(--ink-900);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.patient-login__field input:focus {
+  outline: none;
+  border-color: var(--ink-900);
+  box-shadow: 0 0 0 3px rgba(24, 24, 21, 0.08);
+}
+.patient-login__error {
+  margin-top: 2px;
+  padding: 10px 12px;
+  background: var(--coral-100);
+  border: 1px solid #f0c4b8;
+  border-radius: 8px;
+  color: var(--coral-500);
+  font-size: var(--text-sm);
+}
+.patient-login__submit {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--black);
+  color: var(--cream-50);
+  font-weight: 700;
+  font-size: var(--text-base);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.patient-login__submit:hover {
+  background: #000;
+}
+.patient-login__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.patient-login__link {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-4);
+  color: var(--gold-500);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.patient-login__link:hover {
+  color: var(--ink-900);
+  text-decoration: underline;
+}
+.patient-login__foot {
+  margin-top: var(--space-4);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--gold-500);
+}
+.patient-login__foot strong {
+  color: var(--ink-900);
+  font-weight: 700;
+}
+.patient-login__foot a {
+  color: inherit;
+  text-decoration: none;
+}
+.patient-login__foot a:hover strong {
+  text-decoration: underline;
+}
+.patient-login__foot-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.patient-login__foot-btn:hover strong {
+  text-decoration: underline;
+}
+
+/* Sign in / Create account tabs */
+.patient-login__tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: var(--space-5);
+  background: var(--bg-alt);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+}
+.patient-login__tab {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 180ms var(--ease-out), color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+.patient-login__tab:hover {
+  color: var(--ink-900);
+}
+.patient-login__tab.is-active {
+  background: var(--surface);
+  color: var(--ink-900);
+  box-shadow: 0 2px 8px rgba(24, 24, 21, 0.08);
+}

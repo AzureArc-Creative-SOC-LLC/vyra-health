@@ -1,0 +1,40 @@
+.imgph {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgph__grain {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      80% 60% at 70% 90%,
+      rgba(255, 255, 255, 0.32),
+      transparent 70%
+    ),
+    radial-gradient(40% 40% at 18% 18%, rgba(255, 255, 255, 0.25), transparent);
+  mix-blend-mode: soft-light;
+}
+
+.imgph__motif {
+  width: 38%;
+  max-width: 130px;
+  opacity: 0.85;
+}
+
+.imgph__label {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(40, 38, 30, 0.55);
+  background: rgba(255, 255, 255, 0.45);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(3px);
+}

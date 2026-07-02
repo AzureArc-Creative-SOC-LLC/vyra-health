@@ -1,0 +1,127 @@
+/* ===================== CONTACT METHOD CARDS ===================== */
+.contact__method {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.contact__method-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.contact__method-title {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.contact__method-desc {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.contact__method-meta {
+  align-self: flex-start;
+  font-size: var(--text-xs);
+}
+
+/* ===================== FORM LAYOUT ===================== */
+.contact__form-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.contact__form-copy h2 {
+  margin-top: var(--space-3);
+}
+
+.contact__form-copy .lead {
+  margin-top: var(--space-4);
+}
+
+/* ===================== FORM CARD ===================== */
+.contact__form {
+  padding: var(--space-6);
+}
+
+.contact__submit {
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--green-700);
+  color: var(--cream-50);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s var(--ease), box-shadow 0.15s var(--ease);
+  margin-top: var(--space-2);
+}
+
+.contact__submit:hover {
+  background: var(--green-800);
+  box-shadow: var(--shadow-md);
+}
+
+.contact__submit:focus-visible {
+  outline: 3px solid var(--green-400);
+  outline-offset: 2px;
+}
+
+/* ===================== SUCCESS PANEL ===================== */
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding: var(--space-9) var(--space-6);
+}
+
+.contact__success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--green-700);
+  color: var(--cream-50);
+}
+
+.contact__success h3 {
+  font-size: var(--text-xl);
+}
+
+.contact__success p {
+  color: var(--text-muted);
+  max-width: 36ch;
+  line-height: 1.65;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 880px) {
+  .contact__form-wrap {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 560px) {
+  .contact__form {
+    padding: var(--space-5);
+  }
+}

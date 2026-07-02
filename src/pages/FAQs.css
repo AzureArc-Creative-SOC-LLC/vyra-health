@@ -1,0 +1,101 @@
+/* ===================== FILTER BUTTONS ===================== */
+.faqs__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.faqs__filter-btn {
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-700);
+  transition: border-color 0.15s var(--ease), background 0.15s var(--ease),
+    color 0.15s var(--ease);
+  cursor: pointer;
+}
+
+.faqs__filter-btn:hover {
+  border-color: var(--green-400);
+  color: var(--green-700);
+}
+
+.faqs__filter-btn.is-active {
+  background: var(--green-700);
+  border-color: var(--green-700);
+  color: var(--cream-50);
+}
+
+/* ===================== STILL NEED HELP CARD ===================== */
+.faqs__help {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.faqs__help-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.faqs__help-copy h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+.faqs__help-copy p {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.faqs__help-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--green-700);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--green-700);
+  transition: background 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.faqs__help-link:hover {
+  background: var(--green-700);
+  color: var(--cream-50);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 700px) {
+  .faqs__help {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+  .faqs__help-link {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  .faqs__help {
+    grid-template-columns: 1fr;
+  }
+  .faqs__help-icon {
+    display: none;
+  }
+}

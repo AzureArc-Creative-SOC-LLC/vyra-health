@@ -1,0 +1,12 @@
+# Vyra Health — robots.txt
+# NOTE: replace the Sitemap origin with the production domain before deploy.
+User-agent: *
+Allow: /
+
+# Private / transactional pages — no SEO value, keep out of the index
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Disallow: /login
+
+Sitemap: https://www.vyrahealth.example/sitemap.xml

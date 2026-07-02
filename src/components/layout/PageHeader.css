@@ -1,0 +1,41 @@
+.page-header {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  padding-block: var(--space-8);
+}
+.page-header__glow {
+  position: absolute;
+  top: -240px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 720px;
+  height: 480px;
+  background: radial-gradient(
+    ellipse,
+    rgba(67, 168, 132, 0.22),
+    transparent 68%
+  );
+  pointer-events: none;
+}
+.page-header__inner {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-header h1 {
+  margin-top: var(--space-4);
+  max-width: 16ch;
+}
+.page-header__sub {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+.page-header__extra {
+  margin-top: var(--space-6);
+}

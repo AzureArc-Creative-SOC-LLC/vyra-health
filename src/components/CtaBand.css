@@ -1,0 +1,29 @@
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: var(--space-9) var(--space-6);
+  background: linear-gradient(150deg, var(--navy-800), var(--navy-600));
+  border-radius: var(--radius-xl);
+  color: var(--cream-50);
+}
+.cta-band__glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(244, 134, 110, 0.45), transparent 65%);
+  pointer-events: none;
+}
+.cta-band h2 {
+  position: relative;
+  color: var(--cream-50);
+}
+.cta-band p {
+  position: relative;
+  max-width: 54ch;
+  margin: var(--space-4) auto var(--space-6);
+  color: #c7cbe4;
+}

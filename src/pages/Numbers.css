@@ -1,0 +1,325 @@
+﻿/* ===================== STAT GRID ===================== */
+.numbers__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.numbers__stat {
+  text-align: center;
+  padding: var(--space-7) var(--space-5);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  transition: background 0.2s var(--ease);
+}
+
+.numbers__stat:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.numbers__stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, var(--text-5xl));
+  font-weight: 700;
+  color: var(--green-300);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.numbers__stat-label {
+  display: block;
+  font-weight: 600;
+  color: var(--cream-50);
+  font-size: var(--text-base);
+}
+
+.numbers__stat-sub {
+  display: block;
+  font-size: var(--text-sm);
+  color: #9fb1a9;
+}
+
+/* ===================== RATING BREAKDOWN ===================== */
+.numbers__rating-wrap {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* Average panel */
+.numbers__rating-avg {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  text-align: center;
+  align-items: center;
+}
+
+.numbers__avg-score {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.numbers__avg-score strong {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, var(--text-5xl));
+  font-weight: 700;
+  color: var(--green-700);
+  line-height: 1;
+}
+
+.numbers__avg-slash {
+  font-size: var(--text-2xl);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+}
+
+.numbers__avg-total {
+  font-size: var(--text-sm);
+}
+
+/* Breakdown bars */
+.numbers__breakdown {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.numbers__bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.numbers__bar-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 42px;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.numbers__bar-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-700);
+  white-space: nowrap;
+}
+
+.numbers__bar-track {
+  height: 10px;
+  background: var(--cream-200);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.numbers__bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-400), var(--green-700));
+  border-radius: var(--radius-pill);
+}
+
+.numbers__bar-pct {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--green-700);
+  text-align: right;
+}
+
+/* ===================== REVIEWS ===================== */
+.numbers__review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.numbers__review-quote {
+  flex: 1;
+  color: var(--ink-700);
+  line-height: 1.65;
+}
+
+.numbers__review-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.numbers__review-foot strong {
+  display: block;
+  font-size: var(--text-sm);
+}
+
+.numbers__review-foot span {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ===================== METHODOLOGY ===================== */
+.numbers__methodology-wrap {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.numbers__methodology .section-head {
+  margin-bottom: var(--space-5);
+}
+
+.numbers__methodology-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.numbers__method-block {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.numbers__method-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--cream-200);
+  color: var(--ink-700);
+  flex-shrink: 0;
+}
+
+.numbers__method-block h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+.numbers__method-block p {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Context card */
+.numbers__context {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.numbers__context-eyebrow {
+  margin-bottom: 0;
+}
+
+.numbers__context-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.numbers__context-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.numbers__context-row:last-child {
+  border-bottom: none;
+}
+
+.numbers__context-key {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.numbers__context-note {
+  font-size: var(--text-xs);
+}
+
+/* ===================== TRUST CARDS ===================== */
+.numbers__trust {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.numbers__trust-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--green-100);
+  color: var(--green-700);
+  flex-shrink: 0;
+}
+
+.numbers__trust-title {
+  font-size: var(--text-lg);
+}
+
+.numbers__trust-text {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 960px) {
+  .numbers__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .numbers__methodology-wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .numbers__rating-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .numbers__rating-avg {
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .numbers__stats {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .numbers__stat {
+    padding: var(--space-5) var(--space-4);
+  }
+}
+
+@media (max-width: 380px) {
+  .numbers__stats {
+    grid-template-columns: 1fr;
+  }
+}

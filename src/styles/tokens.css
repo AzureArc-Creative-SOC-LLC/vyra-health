@@ -1,0 +1,134 @@
+/* ============================================================
+   Design tokens — Chloe Moon palette
+   Cream #E2E1D2 / Mint #DBE8E3 / Powder blue #D1EBE8 /
+   Sage mist #C5CCC9 / Deep sage #576862 / Forest ink #2F3A34
+   ============================================================ */
+
+:root {
+  /* ============================================================
+     Brand palette — coral / navy on white
+     Background #FFFFFF · Primary Accent #F4866E (coral)
+     Secondary/Dark #181D4E (navy) · Base Text #6B7076 (gray)
+     Field Border #F0E1DD (blush) · Button #F4866E / text #FFFFFF
+     ============================================================ */
+
+  /* --- Brand accent scale (coral / salmon) --- */
+  --green-900: #d2664c; /* deepest coral — button active */
+  --green-800: #e87559; /* button hover */
+  --green-700: #f4866e; /* PRIMARY ACCENT — buttons, icons, accent text */
+  --green-600: #f79783; /* gradient mid / lighter coral */
+  --green-500: #f4866e; /* italic accent (same as primary) */
+  --green-400: #f9aa98; /* light coral — gradients, progress bars */
+  --green-300: #fccabf; /* pale coral — light text on dark */
+  --green-200: #fbdcd5; /* soft coral — value card */
+  --green-100: #fdeae6; /* very soft coral — icon backgrounds */
+
+  /* --- Light paper / neutrals --- */
+  --cream-50: #ffffff; /* page background (white) / button text */
+  --cream-100: #fcf5f3; /* alt / section background (faint blush) */
+  --cream-200: #f6ece9; /* value card */
+
+  /* --- Accent tints (coral) --- */
+  --gold-500: #f4866e; /* star rating / gold tag → coral */
+  --gold-400: #f79783;
+  --gold-100: #fdeae6;
+
+  --coral-500: #e0573c; /* deeper coral — error text */
+  --coral-100: #fbe2dc;
+
+  /* --- Ink / neutrals --- */
+  --ink-900: #181d4e; /* primary text / headings / labels — navy */
+  --ink-700: #3a3f63; /* secondary navy */
+  --ink-500: #6b7076; /* base / muted text — cool gray */
+  --ink-400: #9aa0a6; /* lighter muted */
+  --line: #f0e1dd; /* field border — blush */
+  --black: #181d4e; /* dark sections — navy */
+  --footer-bg: #12173d; /* footer — deep navy */
+
+  --white: #ffffff;
+
+  /* --- Deep navy scale (dark panels / secondary) --- */
+  --navy-900: #12173d;
+  --navy-800: #181d4e;
+  --navy-600: #2c3370;
+  --secondary: #181d4e;
+
+  /* --- Soft accent palette --- */
+  --sage: #f4866e;
+  --sage-soft: #fdeae6;
+  --rose-soft: #fbe2dc;
+  --lav-soft: #e7e9f3;
+  --cream: #fcf5f3;
+  --sand-soft: #ffffff;
+  --green-deep: #181d4e;
+
+  /* --- Semantic --- */
+  --bg: var(--cream-50);
+  --bg-alt: var(--cream-100);
+  --surface: #ffffff;
+  --primary: var(--green-700);
+  --primary-hover: var(--green-800);
+  --accent: var(--green-700);
+  --text: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --border: var(--line);
+  --link: var(--ink-900);
+  --link-hover: var(--green-700);
+
+  /* --- Typography --- */
+  --font-body: "Red Hat Text", "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+
+  /* Fluid type scale — clamp(min @320px, fluid, max @≈1280px).
+     Max values equal the previous fixed sizes, so desktop is unchanged
+     while every size scales down smoothly toward the smallest phones. */
+  --text-xs: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --text-sm: clamp(0.84rem, 0.81rem + 0.15vw, 0.9rem);
+  --text-base: clamp(0.94rem, 0.91rem + 0.16vw, 1rem);
+  --text-lg: clamp(1.04rem, 0.99rem + 0.28vw, 1.15rem);
+  --text-xl: clamp(1.2rem, 1.08rem + 0.6vw, 1.4rem);
+  --text-2xl: clamp(1.55rem, 1.28rem + 1.15vw, 1.9rem);
+  --text-3xl: clamp(1.95rem, 1.55rem + 1.7vw, 2.6rem);
+  --text-4xl: clamp(2.35rem, 1.75rem + 2.6vw, 3.4rem);
+  --text-5xl: clamp(2.85rem, 1.95rem + 4vw, 5rem);
+
+  /* --- Spacing --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  /* Large spacing steps scale fluidly so mobile loses excess whitespace
+     while desktop keeps its generous rhythm (max == previous fixed value). */
+  --space-7: clamp(30px, 5vw, 48px);
+  --space-8: clamp(38px, 6.5vw, 64px);
+  --space-9: clamp(52px, 8.5vw, 96px);
+  --space-10: clamp(64px, 11vw, 128px);
+
+  /* --- Radii --- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+
+  /* --- Shadows (soft, warm) --- */
+  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.04),
+    0 2px 10px rgba(17, 17, 17, 0.04);
+  --shadow-md: 0 8px 22px rgba(17, 17, 17, 0.06),
+    0 2px 6px rgba(17, 17, 17, 0.04);
+  --shadow-lg: 0 22px 52px rgba(17, 17, 17, 0.1),
+    0 6px 16px rgba(17, 17, 17, 0.06);
+  --shadow-glow: 0 12px 28px rgba(244, 134, 110, 0.32);
+
+  /* --- Layout --- */
+  --container: 1200px;
+  --container-narrow: 880px;
+  --header-h: 80px;
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

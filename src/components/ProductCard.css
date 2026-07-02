@@ -1,0 +1,138 @@
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.product-card__badge {
+  align-self: flex-start;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.product-card__badge--green {
+  background: var(--green-700);
+  color: var(--cream-50);
+}
+.product-card__badge--tan {
+  background: var(--gold-100);
+  color: var(--gold-500);
+}
+.product-card__badge--dark {
+  background: #dcd6e9;
+  color: #5b4f7a;
+}
+.product-card__badge--sage {
+  background: #f1dcd0;
+  color: #7a5546;
+}
+
+.product-card__head {
+  margin-top: var(--space-4);
+}
+.product-card__head h3 {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+}
+
+.product-card__art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  margin-block: var(--space-3);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+}
+.product-card__art-img {
+  width: 100%;
+  max-width: 230px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: scale(1.3);
+  transform-origin: center;
+}
+
+.product-card__desc {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.product-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-block: var(--space-4) var(--space-5);
+}
+.product-card__from {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+.product-card__amount {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--ink-900);
+}
+.product-card__per {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.product-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+.product-card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: transform 0.16s var(--ease), background-color 0.16s var(--ease),
+    color 0.16s var(--ease);
+}
+.product-card__btn:hover {
+  transform: translateY(-2px);
+}
+.product-card__btn--ghost {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--ink-900);
+}
+.product-card__btn--ghost:hover {
+  border-color: var(--ink-900);
+}
+.product-card__btn--dark {
+  background: var(--black);
+  color: var(--cream-50);
+}
+.product-card__btn--dark:hover {
+  background: #000;
+}
