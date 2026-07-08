@@ -243,38 +243,38 @@ export interface PlaceCentralOrderInput {
     total: number;
   };
   promoCode?: string;
+  /** Promo discount as a percentage (e.g. 10 for 10% off). */
+  promoDiscount?: number;
 }
 
 export async function apiPlaceCentralOrder(
   input: PlaceCentralOrderInput
 ): Promise<CentralOrderResponse> {
+  /* One entry per cart line — sent as a real array (not a JSON string). */
   const itemsArray = input.items.map((i) => ({
     name: `${i.productName} · ${i.doseLabel} ${i.strength}`,
-    qty: i.quantity,
+    quantity: i.quantity,
     unitPrice: i.price,
     sku: i.doseId,
   }));
+  const fullName = `${input.firstName} ${input.lastName}`.trim();
   const payload = {
     email: input.email,
-    customerEmail: input.email,
+    customerName: fullName,
     firstName: input.firstName,
     lastName: input.lastName,
     phone: input.mobile,
-    customerPhone: input.mobile,
+    /* line2 is not part of the primary shape; line1 carries the street address. */
     address: input.address.line1,
-    shippingAddress: input.address.line1,
-    /* line2 is not part of the primary shape; fold into address if present */
     city: input.address.city,
-    shippingCity: input.address.city,
     postcode: input.address.postcode,
-    shippingZip: input.address.postcode,
     country: input.address.country ?? "United Kingdom",
-    shippingCountry: input.address.country ?? "United Kingdom",
-    itemsArray: JSON.stringify(itemsArray),
+    itemsArray,
     subtotal: input.totals.subtotal,
-    total: input.totals.total,
     discountAmount: input.totals.discount,
-    promoCode: input.promoCode ?? "",
+    total: input.totals.total,
+    promoCode: input.promoCode ?? null,
+    promoDiscount: input.promoDiscount,
     payment_method: "manual",
   };
   const res = await request<PrimaryOrderResponse>("/api/user-orders", {

@@ -182,6 +182,7 @@ export default function Checkout() {
         items,
         totals: { subtotal, shipping, discount, total },
         promoCode: appliedCode || undefined,
+        promoDiscount: appliedCode ? promoPercent : undefined,
       });
       /* Also record locally so the /account page can show it in the demo. */
       await api.placeOrder(user!.id, items, address);
