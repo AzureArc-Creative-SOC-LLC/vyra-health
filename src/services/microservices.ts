@@ -6,7 +6,9 @@
 
 import type { CartItem, ShippingAddress } from "../types";
 
-export const MICROSERVICES_BASE = "https://www.microservices.tech";
+export const MICROSERVICES_BASE =
+  // "http://localhost:5003"; // TESTING — local user-order-service
+  "https://www.microservices.tech"; // production
 const JWT_KEY = "vyra.jwt";
 
 /* ----- Token storage ----- */
@@ -316,4 +318,117 @@ export async function apiNewsletterSubscribe(
     method: "POST",
     body: { email, consent, source, website: "" },
   });
+}
+
+/* ============================================================
+   Order confirmation email
+
+   vyra-health is a static Vite SPA — it has no server of its own, so
+   sendOrderConfirmationEmail() posts to a tiny companion server (see
+   /server) which forwards to Dev/frontend/shared-email/order-email.js.
+
+   apiPlaceCentralOrder's own response only carries the primary endpoint's
+   minimal shape ({orderId, orderNumber, email_debug}) — it doesn't echo
+   back the persisted order. So the email is built from a fresh
+   getOrderByNumber read (the order-creation API's own stored record)
+   rather than local checkout form/cart state, so it reflects what was
+   actually persisted server-side, not what the client guessed
+   pre-submission.
+   ============================================================ */
+
+export type ApiOrderRow = {
+  id: number;
+  order_number: string;
+  customer_email: string;
+  customer_name?: string;
+  currency?: string;
+  subtotal?: number | string;
+  shipping?: number | string;
+  discount_amount?: number | string;
+  total?: number | string;
+  shipping_address?: string;
+  shipping_city?: string;
+  shipping_zip?: string;
+  shipping_country?: string;
+};
+
+export type ApiOrderItemRow = {
+  name: string;
+  quantity: number;
+  unit_price: string | number;
+};
+
+export interface OrderDetailResponse {
+  order: ApiOrderRow & Record<string, unknown>;
+  items: ApiOrderItemRow[];
+  payments: unknown[];
+}
+
+export function getOrderByNumber(
+  orderNumber: string
+): Promise<OrderDetailResponse> {
+  return request<OrderDetailResponse>(
+    `/api/user-orders/${encodeURIComponent(orderNumber)}`
+  );
+}
+
+// Different origin from MICROSERVICES_BASE — this never talks to the
+// shared backend, only to this frontend's own companion email server.
+const EMAIL_BASE_URL =
+  // "http://localhost:4004"; // TESTING — local companion email server
+  ""; // production (same-origin, proxied by nginx)
+
+/**
+ * Fire-and-forget: sends vyra-health's own branded order confirmation
+ * email. Never throws — a failed send should not undo a successfully
+ * placed order.
+ */
+export async function sendOrderConfirmationEmail(
+  orderNumber: string
+): Promise<void> {
+  try {
+    const { order, items } = await getOrderByNumber(orderNumber);
+    const o = order;
+
+    const customerName = o.customer_name || o.customer_email;
+    const shippingAddress = [
+      o.shipping_address,
+      o.shipping_city,
+      o.shipping_zip,
+      o.shipping_country,
+    ]
+      .filter(Boolean)
+      .join(", ");
+
+    const res = await fetch(`${EMAIL_BASE_URL}/api/send-order-confirmation`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        customer: { name: customerName, email: o.customer_email },
+        order: {
+          orderNumber: o.order_number,
+          currency: o.currency || "GBP",
+          items: items.map((it) => ({
+            name: it.name,
+            quantity: it.quantity,
+            price: Number(it.unit_price),
+          })),
+          subtotal: Number(o.subtotal),
+          shipping: Number(o.shipping) || 0,
+          discount: Number(o.discount_amount ?? 0),
+          total: Number(o.total),
+          shippingAddress,
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("[microservices] order confirmation email failed", {
+        status: res.status,
+        body: await res.text(),
+      });
+    }
+  } catch (err) {
+    console.error("[microservices] order confirmation email request failed", err);
+  }
 }

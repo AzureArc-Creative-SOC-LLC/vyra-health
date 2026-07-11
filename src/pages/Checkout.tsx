@@ -8,6 +8,7 @@ import * as api from "../services/api";
 import {
   apiPlaceCentralOrder,
   apiValidatePromo,
+  sendOrderConfirmationEmail,
   ApiError,
 } from "../services/microservices";
 import { LinkButton } from "../components/ui/Button";
@@ -186,6 +187,13 @@ export default function Checkout() {
       });
       /* Also record locally so the /account page can show it in the demo. */
       await api.placeOrder(user!.id, items, address);
+
+      /* Fire-and-forget: branded confirmation email, built from a fresh
+         read of the persisted order (not this form's local state) — never
+         awaited into this try/catch, so a failed send can't undo an
+         otherwise-successful order. */
+      void sendOrderConfirmationEmail(centralRes.orderNumber);
+
       setPlaced({
         orderId: centralRes.orderNumber,
         total: centralRes.totals?.total ?? total,
