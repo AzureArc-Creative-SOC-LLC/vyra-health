@@ -45,7 +45,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <div className="product-card__price">
         <span className="product-card__from">From</span>
-        <span className="product-card__amount">£{fromPrice}</span>
+        <span className="product-card__amount">${fromPrice}</span>
       </div>
 
       <div className="product-card__actions">

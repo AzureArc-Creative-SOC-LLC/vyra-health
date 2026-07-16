@@ -421,7 +421,7 @@ export default function Checkout() {
             <ul className="co__summary-items">
               {items.map((item) => {
                 const product = getProductBySlug(item.productSlug);
-                const img = product?.img ?? "/images/alluvi-product.jpeg";
+                const img = product?.img ?? "/images/one-price-image.webp";
                 return (
                   <li key={item.doseId} className="co__summary-item">
                     <span className="co__summary-thumb">
@@ -435,7 +435,7 @@ export default function Checkout() {
                       </span>
                     </span>
                     <span className="co__summary-price">
-                      £{(item.price * item.quantity).toFixed(2)}
+                      ${(item.price * item.quantity).toFixed(2)}
                     </span>
                   </li>
                 );
@@ -472,25 +472,25 @@ export default function Checkout() {
             <div className="co__totals">
               <div>
                 <span>Subtotal</span>
-                <strong>£{subtotal.toFixed(2)}</strong>
+                <strong>${subtotal.toFixed(2)}</strong>
               </div>
               {discount > 0 && (
                 <div>
                   <span>
                     Discount <em>({appliedCode})</em>
                   </span>
-                  <strong>−£{discount.toFixed(2)}</strong>
+                  <strong>−${discount.toFixed(2)}</strong>
                 </div>
               )}
               <div>
                 <span>Shipping</span>
-                <strong>{shipping === 0 ? "Free" : `£${shipping.toFixed(2)}`}</strong>
+                <strong>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</strong>
               </div>
             </div>
 
             <div className="co__grand">
               <span>Total</span>
-              <strong>£{total.toFixed(2)}</strong>
+              <strong>${total.toFixed(2)}</strong>
             </div>
 
             <Button
@@ -502,7 +502,7 @@ export default function Checkout() {
             >
               {submitting
                 ? "Placing order…"
-                : `Place order · £${total.toFixed(2)}`}
+                : `Place order · $${total.toFixed(2)}`}
             </Button>
 
             <p className="co__foot-note">
@@ -552,7 +552,7 @@ export default function Checkout() {
                   </div>
                   <div className="co__dialog-meta-right">
                     <span>Total</span>
-                    <strong>£{placed.total.toFixed(2)}</strong>
+                    <strong>${placed.total.toFixed(2)}</strong>
                   </div>
                 </div>
 

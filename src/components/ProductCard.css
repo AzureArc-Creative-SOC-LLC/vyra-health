@@ -63,6 +63,9 @@
   width: 100%;
   max-width: 230px;
   height: auto;
+  /* Reserves the box before the lazy image lands. Without it these cards
+     collapse to 0px tall and shove the grid down on load (CLS). */
+  aspect-ratio: 1 / 1;
   display: block;
   object-fit: contain;
   mix-blend-mode: multiply;

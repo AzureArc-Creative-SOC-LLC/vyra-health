@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import Header from "./components/layout/Header";
@@ -100,20 +100,26 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        <ScrollToTop />
-        <Header />
-        <div id="main">
-          <AnimatedRoutes />
-        </div>
-        <Footer />
-        <HelpButton />
-        <WelcomeAuthModal />
-      </CartProvider>
-    </AuthProvider>
+    // reducedMotion="user" honours prefers-reduced-motion across every
+    // motion.* call site at once. The reduced-motion block in global.css only
+    // caps CSS animations; framer-motion animates inline transforms via JS, so
+    // without this the reveals, drawer and page cross-fade ignore the setting.
+    <MotionConfig reducedMotion="user">
+      <AuthProvider>
+        <CartProvider>
+          <a href="#main" className="skip-link">
+            Skip to content
+          </a>
+          <ScrollToTop />
+          <Header />
+          <div id="main">
+            <AnimatedRoutes />
+          </div>
+          <Footer />
+          <HelpButton />
+          <WelcomeAuthModal />
+        </CartProvider>
+      </AuthProvider>
+    </MotionConfig>
   );
 }

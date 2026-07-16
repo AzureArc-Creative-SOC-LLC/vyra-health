@@ -657,6 +657,29 @@
 .home__products .product-card {
   flex: 1;
 }
+.home__products-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+.home__see-all {
+  appearance: none;
+  border: 1px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  padding: 12px 26px;
+  font: inherit;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.home__see-all:hover,
+.home__see-all:focus-visible {
+  background: var(--black);
+  color: var(--cream-50);
+  outline: none;
+}
 
 /* ================= SCIENCE ================= */
 .science {
@@ -818,6 +841,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hp-revtrack { animation: none; }
+  /* The logo marquee loops forever; it needs the same escape hatch its
+     sibling tracks already have. */
+  .marquee__track { animation: none; }
 }
 
 /* ================= FAQ ================= */

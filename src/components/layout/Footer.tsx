@@ -101,7 +101,7 @@ export default function Footer() {
               advice, no real orders are processed, and no payment is taken.
             </p>
             <p>
-              GLP-1 medicines such as semaglutide and tirzepatide are the same
+              GLP-1 medicines such as tirzepatide and retatrutide are the same
               active compounds found in some branded medications. Individual
               results vary. Always consult a qualified healthcare professional
               before starting any treatment. You must be 18 or over.
@@ -190,7 +190,7 @@ export default function Footer() {
           <span className="site-footer__legal">
             <Link to="/refund-policy">Refund policy</Link>
             <Link to="/contact">Contact</Link>
-            <span className="site-footer__select">English · GBP (£)</span>
+            <span className="site-footer__select">English · USD ($)</span>
           </span>
         </div>
       </div>

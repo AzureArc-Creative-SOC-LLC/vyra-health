@@ -361,8 +361,8 @@ export default function Quiz() {
                       </p>
                       <h3>
                         {result.recommendedProductSlug === "tirzepatide"
-                          ? "Tirzepatide"
-                          : "Semaglutide"}
+                          ? "Tirzepatide 40mg"
+                          : "Retatrutide 20mg"}
                       </h3>
                     </div>
                   )}

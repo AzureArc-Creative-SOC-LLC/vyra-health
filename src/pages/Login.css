@@ -68,7 +68,7 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
-  font-size: var(--text-base);
+  font-size: max(16px, var(--text-base));
   color: var(--ink-900);
   transition: border-color 0.15s, box-shadow 0.15s;
 }

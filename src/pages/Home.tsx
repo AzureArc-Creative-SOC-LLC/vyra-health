@@ -81,7 +81,15 @@ function GoalWeightCard() {
 
 /* ============================================================ */
 
+const PRODUCTS_PREVIEW_COUNT = 4;
+
 export default function Home() {
+  const [showAllProducts, setShowAllProducts] = useState(false);
+  const visibleProducts = showAllProducts
+    ? products
+    : products.slice(0, PRODUCTS_PREVIEW_COUNT);
+  const hasMoreProducts = products.length > PRODUCTS_PREVIEW_COUNT;
+
   useSeo({
     title: "Clinician-reviewed GLP-1 weight loss treatments",
     description:
@@ -125,7 +133,7 @@ export default function Home() {
   const compareRows = [
     {
       label: "Active ingredient",
-      vyra: "Tirzepatide / Semaglutide",
+      vyra: "Tirzepatide / Retatrutide",
       other: "Tirzepatide / Semaglutide",
       check: false,
     },
@@ -161,7 +169,7 @@ export default function Home() {
       title: "Take the 2-min quiz",
       text: "A few quick questions about your health and goals.",
       motif: "phone" as const,
-      img: "/images/quiz-new1.jpeg",
+      img: "/images/quiz.webp",
       ratio: "3 / 2",
     },
     {
@@ -169,14 +177,14 @@ export default function Home() {
       title: "Choose your vial",
       text: "Pick the treatment that suits your goals.",
       motif: "desk" as const,
-      img: "/images/vial-img.jpeg",
+      img: "/images/vial.webp",
     },
     {
       n: 3,
       title: "Delivered to your door",
       text: "Discreet packaging — fast and free.",
       motif: "door" as const,
-      img: "/images/delivery-new.jpg",
+      img: "/images/deliver.webp",
     },
   ];
 
@@ -218,7 +226,7 @@ export default function Home() {
 
             <div className="hero__pills">
               <span className="hero__pill">
-                <IconTag size={15} /> From £35
+                <IconTag size={15} /> From $35
               </span>
               <span className="hero__pill">
                 <IconTruck size={15} /> Free shipping
@@ -258,7 +266,7 @@ export default function Home() {
               transition={{ duration: 1.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <SmartImage
-                src="/images/hero-imgnew.png"
+                src="/images/hero2.webp"
                 alt="A Vyra Health member at home"
                 motif="portrait"
                 ratio="4 / 5"
@@ -382,10 +390,10 @@ export default function Home() {
 
               <div className="ctable__cell ctable__label">Typical price</div>
               <div className="ctable__cell ctable__vyra ctable__vyra--price">
-                From £35
+                From $35
               </div>
               <div className="ctable__cell ctable__other ctable__other--price">
-                £200+/mo
+                $200+/mo
               </div>
             </div>
           </Reveal>
@@ -488,7 +496,7 @@ export default function Home() {
               {[
                 [
                   "Affordable treatments",
-                  "Tirzepatide, semaglutide and other GLPs in vial form (pens coming soon)",
+                  "Tirzepatide, Retatrutide and recovery peptides in pre-filled pen form",
                 ],
                 [
                   "1:1 clinician guidance",
@@ -519,7 +527,7 @@ export default function Home() {
             </Reveal>
             <Reveal className="oneprice__media" from="left" index={1}>
               <SmartImage
-                src="/images/alluvi-product.jpeg"
+                src="/images/one-price-image.webp"
                 alt="Vyra Health treatment package"
                 motif="package"
                 ratio="1 / 1"
@@ -543,12 +551,26 @@ export default function Home() {
           </p>
         </Reveal>
         <div className="home__products">
-          {products.map((p, i) => (
+          {visibleProducts.map((p, i) => (
             <Reveal key={p.id} index={i}>
               <ProductCard product={p} />
             </Reveal>
           ))}
         </div>
+        {hasMoreProducts && (
+          <div className="home__products-cta">
+            <button
+              type="button"
+              className="home__see-all"
+              onClick={() => setShowAllProducts((v) => !v)}
+              aria-expanded={showAllProducts}
+            >
+              {showAllProducts
+                ? "Show fewer"
+                : `See all ${products.length} treatments`}
+            </button>
+          </div>
+        )}
       </section>
 
       {/* ============ SCIENCE ============ */}
@@ -595,28 +617,17 @@ export default function Home() {
         <div className="hp-revmarquee">
           <div className="hp-revtrack">
             {(() => {
-              const womenImgs = [
-                "/images/review-img4.jpg",
+              const peopleImgs = [
+                "/images/people1.webp",
+                "/images/people2.webp",
+                "/images/people3.webp",
+                "/images/people4.webp",
+                "/images/people5.webp",
               ];
-              const menImgs = [
-                "/images/review-img1.avif",
-                "/images/review-img2.jpg",
-                "/images/review-img3.jpg",
-                "/images/review-img5.jpg",
-                "/images/review-img6.jpg",
-              ];
-              const used = { women: 0, men: 0 };
-              const trimmed = reviews.filter((r) => {
-                const pool = r.gender === "women" ? womenImgs : menImgs;
-                if (used[r.gender] >= pool.length) return false;
-                used[r.gender] += 1;
-                return true;
-              });
+              const trimmed = reviews.slice(0, peopleImgs.length);
               return [...trimmed, ...trimmed].map((r, i) => {
-                const pool = r.gender === "women" ? womenImgs : menImgs;
-                const sameGenderList = trimmed.filter((x) => x.gender === r.gender);
-                const positionInGender = sameGenderList.findIndex((x) => x.id === r.id);
-                const reviewImg = pool[positionInGender];
+                const position = trimmed.findIndex((x) => x.id === r.id);
+                const reviewImg = peopleImgs[position];
                 return (
               <div className="hp-revslide" key={`${r.id}-${i}`}>
                 <article className="hp-revcard">

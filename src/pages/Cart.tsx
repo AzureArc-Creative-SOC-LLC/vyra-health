@@ -75,7 +75,7 @@ export default function Cart() {
               <AnimatePresence initial={false}>
                 {items.map((item) => {
                   const product = getProductBySlug(item.productSlug);
-                  const img = product?.img ?? "/images/alluvi-product.jpeg";
+                  const img = product?.img ?? "/images/one-price-image.webp";
                   return (
                     <motion.li
                       key={item.doseId}
@@ -143,7 +143,7 @@ export default function Cart() {
                       </div>
 
                       <div className="cart__item-price">
-                        £{(item.price * item.quantity).toFixed(2)}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </div>
                     </motion.li>
                   );
@@ -171,22 +171,22 @@ export default function Cart() {
                   ({itemCount} item{itemCount === 1 ? "" : "s"})
                 </em>
               </span>
-              <strong>£{subtotal.toFixed(2)}</strong>
+              <strong>${subtotal.toFixed(2)}</strong>
             </div>
             <div className="cart__summary-row">
               <span>
                 Shipping <em>— {shippingLabel}</em>
               </span>
               <strong>
-                {SHIPPING_FEE === 0 ? "Free" : `£${SHIPPING_FEE.toFixed(2)}`}
+                {SHIPPING_FEE === 0 ? "Free" : `$${SHIPPING_FEE.toFixed(2)}`}
               </strong>
             </div>
 
             <div className="cart__summary-total">
               <span>Total</span>
-              <strong>£{total.toFixed(2)}</strong>
+              <strong>${total.toFixed(2)}</strong>
             </div>
-            <span className="cart__summary-tax">GBP · tax included</span>
+            <span className="cart__summary-tax">USD · tax included</span>
 
             <LinkButton
               to="/checkout"

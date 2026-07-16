@@ -20,7 +20,7 @@ export const faqs: Faq[] = [
     category: "Treatment",
     question: "Which treatment should I choose?",
     answer:
-      "If you're new to GLP-1 medicines, Semaglutide is a gentle, well-studied starting point. Tirzepatide adds a second pathway for stronger appetite control. Your clinician will confirm the best fit after reviewing your quiz.",
+      "If you're new to GLP-1 medicines, Retatrutide 20mg is a gentler starting point. Tirzepatide 40mg is our most-chosen dual agonist for stronger appetite control. Your clinician will confirm the best fit after reviewing your quiz.",
   },
   {
     id: "f4",

@@ -24,7 +24,7 @@ export const reviews: Review[] = [
     initials: "MT",
     location: "Bristol",
     rating: 5,
-    product: "Semaglutide",
+    product: "Retatrutide 20mg",
     monthsIn: 3,
     lostLabel: "9 kg down",
     quote:
@@ -69,7 +69,7 @@ export const reviews: Review[] = [
     initials: "AK",
     location: "Birmingham",
     rating: 5,
-    product: "Semaglutide",
+    product: "Retatrutide 20mg",
     monthsIn: 5,
     lostLabel: "16 kg down",
     quote:
@@ -84,11 +84,11 @@ export const reviews: Review[] = [
     initials: "TR",
     location: "Cardiff",
     rating: 5,
-    product: "Cagrilintide",
+    product: "NAD+",
     monthsIn: 3,
-    lostLabel: "8 kg down",
+    lostLabel: "Steadier energy",
     quote:
-      "Added cagrilintide alongside my GLP-1 and my appetite finally felt steady between meals.",
+      "Started the NAD+ kit alongside my GLP-1 and my energy through the afternoon feels noticeably steadier.",
     verified: true,
     gender: "men",
     portraitIdx: 77,

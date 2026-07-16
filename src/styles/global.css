@@ -16,6 +16,11 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   overflow-x: clip;
+  /* Keep the scrollbar gutter reserved at all times. The welcome modal sets
+     body{overflow:hidden} ~350ms after load; without this, removing the
+     classic desktop scrollbar reflows the page ~15px wider — a layout shift
+     inside the CLS window, caused entirely by the scrollbar, not the modal. */
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: reduce) {

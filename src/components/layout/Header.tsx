@@ -218,7 +218,7 @@ export default function Header() {
                           {p.name}
                         </strong>
                         <span className="site-header__drawer-pcard-price">
-                          From £{fromPrice}
+                          From ${fromPrice}
                         </span>
                       </Link>
                     );

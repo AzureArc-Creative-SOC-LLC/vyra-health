@@ -185,7 +185,7 @@ export async function evaluateQuiz(answers: QuizAnswers): Promise<QuizResult> {
     };
   }
 
-  const recommendedProductSlug = bmi >= 35 ? "tirzepatide" : "semaglutide";
+  const recommendedProductSlug = bmi >= 35 ? "tirzepatide" : "retatrutide-20mg";
   save(STORAGE_KEYS.quiz, { answers, completedAt: new Date().toISOString() });
 
   return {

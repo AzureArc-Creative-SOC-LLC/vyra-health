@@ -407,7 +407,7 @@ export async function sendOrderConfirmationEmail(
         customer: { name: customerName, email: o.customer_email },
         order: {
           orderNumber: o.order_number,
-          currency: o.currency || "GBP",
+          currency: o.currency || "USD",
           items: items.map((it) => ({
             name: it.name,
             quantity: it.quantity,

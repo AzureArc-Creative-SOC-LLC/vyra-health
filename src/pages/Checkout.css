@@ -109,7 +109,8 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
-  font-size: var(--text-sm);
+  /* max(16px, …): below 16px iOS Safari zooms on focus and never zooms back. */
+  font-size: max(16px, var(--text-sm));
   color: var(--ink-900);
   transition: border-color 160ms var(--ease-out),
     box-shadow 160ms var(--ease-out);
@@ -261,7 +262,7 @@
   border: 0;
   background: transparent;
   padding: 8px 14px;
-  font-size: var(--text-sm);
+  font-size: max(16px, var(--text-sm));
   color: var(--ink-900);
 }
 .co__promo input:focus {

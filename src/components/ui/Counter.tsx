@@ -29,11 +29,16 @@ export default function Counter({
     const el = ref.current;
     if (!el) return;
 
+    // Held at effect scope so the cleanup below can cancel an in-flight count.
+    // (Previously `start` returned its own canceller, but the observer callback
+    // discarded it — navigating away mid-count left the loop running and
+    // setValue firing on an unmounted component.)
+    let raf = 0;
+
     const start = () => {
       if (startedRef.current) return;
       startedRef.current = true;
       const startTime = performance.now() + delay;
-      let raf = 0;
       const tick = (now: number) => {
         const t = Math.max(0, Math.min(1, (now - startTime) / duration));
         const eased = easeOutCubic(t);
@@ -41,7 +46,6 @@ export default function Counter({
         if (t < 1) raf = requestAnimationFrame(tick);
       };
       raf = requestAnimationFrame(tick);
-      return () => cancelAnimationFrame(raf);
     };
 
     const obs = new IntersectionObserver(
@@ -56,7 +60,10 @@ export default function Counter({
       { threshold: 0.3 }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      obs.disconnect();
+      cancelAnimationFrame(raf);
+    };
   }, [to, duration, delay]);
 
   return <span ref={ref}>{value.toFixed(decimals)}</span>;

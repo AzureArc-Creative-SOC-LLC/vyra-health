@@ -239,7 +239,7 @@ function OrderCard({
           </p>
         </div>
         <span className="account__order-total">
-          £{order.total.toFixed(2)}
+          ${order.total.toFixed(2)}
         </span>
       </div>
 
@@ -260,7 +260,7 @@ function OrderCard({
                 </span>
               </div>
               <span className="account__order-item-price">
-                £{(item.price * item.quantity).toFixed(2)}
+                ${(item.price * item.quantity).toFixed(2)}
               </span>
             </div>
           ))}

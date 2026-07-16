@@ -11,8 +11,8 @@
       name="description"
       content="Clinician-reviewed GLP-1 weight loss treatments — same active ingredients as the brand names, at a fair price. (Practice clone project, not a real clinic.)"
     />
-    <!-- NOTE: replace https://www.vyrahealth.example with the production origin. -->
-    <link rel="canonical" href="https://www.vyrahealth.example/" />
+    <!-- NOTE: replace %VITE_SITE_URL% with the production origin. -->
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph -->
@@ -23,8 +23,8 @@
       property="og:description"
       content="Clinician-reviewed GLP-1 weight loss treatments — same active ingredients as the brand names, at a fair price."
     />
-    <meta property="og:url" content="https://www.vyrahealth.example/" />
-    <meta property="og:image" content="https://www.vyrahealth.example/images/hero-imgnew.png" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/images/hero2.webp" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +33,7 @@
       name="twitter:description"
       content="Clinician-reviewed GLP-1 weight loss treatments — same active ingredients as the brand names, at a fair price."
     />
-    <meta name="twitter:image" content="https://www.vyrahealth.example/images/hero-imgnew.png" />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/images/hero2.webp" />
 
     <!-- Fonts: preconnect + swap so text renders immediately with a fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,9 +43,18 @@
       rel="stylesheet"
     />
 
-    <!-- The hero/LCP image is prioritised at the element level via
-         fetchpriority="high" + eager loading (see SmartImage `priority`),
-         which avoids wasting the fetch on the SPA's non-home routes. -->
+    <!-- The hero <img> only exists once the JS bundle has parsed, so the
+         preload scanner never sees it and the LCP fetch starts late. This
+         preload starts it during HTML parse instead. SmartImage's `priority`
+         (eager + fetchpriority=high) still applies at the element level.
+         Cost on non-home routes is one unused 224KB image; worth it for LCP. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero2.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
 
     <!-- Organization + WebSite structured data (site-wide, static) -->
     <script type="application/ld+json">
@@ -54,18 +63,18 @@
         "@graph": [
           {
             "@type": "Organization",
-            "@id": "https://www.vyrahealth.example/#organization",
+            "@id": "%VITE_SITE_URL%/#organization",
             "name": "Vyra Health",
-            "url": "https://www.vyrahealth.example/",
-            "logo": "https://www.vyrahealth.example/favicon.svg",
+            "url": "%VITE_SITE_URL%/",
+            "logo": "%VITE_SITE_URL%/favicon.svg",
             "description": "Clinician-reviewed GLP-1 weight loss treatments."
           },
           {
             "@type": "WebSite",
-            "@id": "https://www.vyrahealth.example/#website",
-            "url": "https://www.vyrahealth.example/",
+            "@id": "%VITE_SITE_URL%/#website",
+            "url": "%VITE_SITE_URL%/",
             "name": "Vyra Health",
-            "publisher": { "@id": "https://www.vyrahealth.example/#organization" }
+            "publisher": { "@id": "%VITE_SITE_URL%/#organization" }
           }
         ]
       }

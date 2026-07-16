@@ -11,7 +11,7 @@ export const doctors: Doctor[] = [
     bio: "Leads our clinical team with over twelve years in general practice and metabolic health. Personally reviews every patient eligibility assessment.",
     accent: "#36482f",
     gender: "men",
-    img: "/images/doctor-img1.webp",
+    img: "/images/doctor1.webp",
   },
   {
     id: "d2",
@@ -21,7 +21,7 @@ export const doctors: Doctor[] = [
     bio: "Specialises in weight management and endocrinology. Works closely with patients to adjust treatment plans throughout their journey.",
     accent: "#5e7257",
     gender: "men",
-    img: "/images/doctor-img3.png",
+    img: "/images/doctor2.webp",
   },
   {
     id: "d3",
@@ -31,7 +31,7 @@ export const doctors: Doctor[] = [
     bio: "Brings a research-driven approach to patient care, making sure treatment protocols reflect the latest clinical evidence.",
     accent: "#44552f",
     gender: "men",
-    img: "/images/doctor-img4.png",
+    img: "/images/doctor3.webp",
   },
   {
     id: "d4",
@@ -41,7 +41,7 @@ export const doctors: Doctor[] = [
     bio: "Oversees prescribing decisions with a background in NHS general practice and long-term medication management.",
     accent: "#36482f",
     gender: "men",
-    img: "/images/doctor-img5.png",
+    img: "/images/doctor4.webp",
   },
   {
     id: "d5",
@@ -51,7 +51,7 @@ export const doctors: Doctor[] = [
     bio: "Specialises in drug interactions and safety, making sure every treatment works safely alongside existing medications.",
     accent: "#5e7257",
     gender: "men",
-    img: "/images/doctor-img2.png",
+    img: "/images/doctor5.webp",
   },
   {
     id: "d6",
@@ -61,7 +61,7 @@ export const doctors: Doctor[] = [
     bio: "Over fifteen years of hospital and private practice experience. Sets clinical governance standards across all Vyra Health services.",
     accent: "#44552f",
     gender: "women",
-    img: "/images/doctor-img6.png",
+    img: "/images/doctor6.webp",
   },
   {
     id: "d7",
@@ -71,7 +71,7 @@ export const doctors: Doctor[] = [
     bio: "Holds specialist certification in obesity medicine. Designs personalised treatment pathways based on metabolic profiles.",
     accent: "#36482f",
     gender: "men",
-    img: "/images/doctor-img8.png",
+    img: "/images/doctor7.webp",
   },
 ];
 
@@ -84,7 +84,7 @@ export const dieticians: Doctor[] = [
     bio: "Builds sustainable eating habits that complement treatment. Creates personalised meal plans tailored to individual lifestyles and goals.",
     accent: "#36482f",
     gender: "men",
-    img: "/images/patel.png",
+    img: "/images/dietitians1.webp",
   },
   {
     id: "t2",
@@ -94,7 +94,7 @@ export const dieticians: Doctor[] = [
     bio: "Specialises in nutritional support during weight management therapy with practical, evidence-based advice.",
     accent: "#5e7257",
     gender: "men",
-    img: "/images/adeyemi.png",
+    img: "/images/dietitians2.webp",
   },
   {
     id: "t3",
@@ -104,6 +104,6 @@ export const dieticians: Doctor[] = [
     bio: "Focuses on the relationship between nutrition and metabolic health, providing ongoing dietary guidance for the best results.",
     accent: "#44552f",
     gender: "women",
-    img: "/images/marchetti.png",
+    img: "/images/dietitians3.webp",
   },
 ];

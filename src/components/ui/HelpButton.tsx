@@ -29,25 +29,31 @@ function generateReply(input: string): string {
     return "Hi! Happy to help. Are you asking about a treatment, eligibility, dosing, or delivery?";
   }
   if (has("which product", "what should i start", "start with", "best for me", "recommend")) {
-    return "Most members start with Semaglutide (£35 / 4 weeks) — it's the most studied GLP-1 and a gentle entry point. If you've used GLP-1s before and want stronger appetite control, Tirzepatide (£59) is the most-chosen. The 2-min quiz on our home page narrows it down for you.";
+    return "Most members start with Retatrutide 20mg ($35 / 4 weeks) — a gentler introduction to our triple agonist. If you want the strongest option, Tirzepatide 40mg ($59) is the most-chosen dual agonist. The 2-min quiz on our home page narrows it down for you.";
   }
   if (has("tirzepatide", "tirze")) {
-    return "Tirzepatide is a dual GLP-1 / GIP agonist — it works on two appetite pathways for stronger, more sustained control. Starter dose is 2.5 mg / 4 weeks from £59. Clinician-titrated up to 10 mg.";
+    return "Tirzepatide 40mg is a dual GLP-1 / GIP agonist — it works on two appetite pathways for stronger, more sustained control. Starter dose is 2.5 mg / 4 weeks from $59. Clinician-titrated up to 10 mg.";
   }
-  if (has("semaglutide", "sema")) {
-    return "Semaglutide is the most studied GLP-1 receptor agonist. Starter dose 0.25 mg / 4 weeks from £35. Once-weekly injection, with a steady build-up overseen by a clinician.";
+  if (has("retatrutide 20", "reta 20", "20mg")) {
+    return "Retatrutide 20mg is our lower-strength triple-agonist kit — a gentler entry point at $35 / 4 weeks. Titrated up to 4 mg by your clinician.";
   }
   if (has("retatrutide", "reta")) {
-    return "Retatrutide is a triple agonist (GLP-1 + GIP + Glucagon) — our strongest option, best after tolerating a GLP-1. From £40 / 4 weeks.";
+    return "Retatrutide 40mg is a triple agonist (GLP-1 + GIP + Glucagon) — our strongest option, best after tolerating a GLP-1. From $40 / 4 weeks.";
   }
-  if (has("cagrilintide", "cagri", "amylin")) {
-    return "Cagrilintide acts on amylin (a different pathway) and pairs well with a GLP-1 to keep appetite steady between meals. From £70 / 4 weeks.";
+  if (has("nad", "energy", "longevity", "mitochondria")) {
+    return "NAD+ 1,000mg is a coenzyme kit for energy metabolism and longevity research — 2 pre-filled 500 mg pens for $140.";
+  }
+  if (has("glow", "ghk", "skin", "hair")) {
+    return "Glow 70mg is a skin, hair and cellular-repair blend — GHK-Cu with BPC-157 and TB-500. $100 for the full kit (2 pre-filled pens).";
+  }
+  if (has("bpc", "tb-500", "tb500", "recovery")) {
+    return "BPC-157 & TB-500 40mg is a dual recovery peptide blend — 20 mg BPC-157 + 20 mg TB-500 per pen. $130 for the full kit.";
   }
   if (has("ship", "deliver", "delivery", "post", "courier", "arrive")) {
     return "Free, discreet next-day delivery in plain packaging once your clinician approves your order. Most orders ship within 24 hours of approval.";
   }
   if (has("price", "cost", "how much", "fee", "subscription")) {
-    return "Pricing starts at £35 / 4 weeks (Semaglutide starter) and includes the clinician review, dietitian sessions and delivery — no subscription, no hidden fees.";
+    return "Pricing starts at $35 / 4 weeks (Retatrutide 20mg starter) and includes the clinician review, dietitian sessions and delivery — no subscription, no hidden fees.";
   }
   if (has("refund", "return", "money back")) {
     return "First-order, no-quibble refund: send the unopened vial back within 30 days for a full refund. No forms, no follow-up calls.";
@@ -68,7 +74,7 @@ function generateReply(input: string): string {
     return "Anytime! If you'd like a human clinician, hit 'Take the quiz' and we'll line one up.";
   }
 
-  return "Good question — a clinician can answer that in detail. While we wait, you can take the 2-min quiz on the home page or ask me about Tirzepatide, Semaglutide, pricing, shipping or eligibility.";
+  return "Good question — a clinician can answer that in detail. While we wait, you can take the 2-min quiz on the home page or ask me about Tirzepatide, Retatrutide, pricing, shipping or eligibility.";
 }
 
 export default function HelpButton() {

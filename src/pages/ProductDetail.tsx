@@ -93,7 +93,7 @@ export default function ProductDetail() {
             : undefined,
           offers: {
             "@type": "AggregateOffer",
-            priceCurrency: "GBP",
+            priceCurrency: "USD",
             lowPrice: Math.min(...product.doses.map((d) => d.price)),
             highPrice: Math.max(...product.doses.map((d) => d.price)),
             offerCount: product.doses.length,
@@ -124,7 +124,7 @@ export default function ProductDetail() {
   if (!product) return <Navigate to="/" replace />;
 
   const dose = selectedDose ?? product.doses[0];
-  const priceLabel = `£${dose.price}`;
+  const priceLabel = `$${dose.price}`;
 
   const onAddToCart = () => {
     addItem({
@@ -274,22 +274,27 @@ export default function ProductDetail() {
                 </div>
               </div>
 
-              <table className="pdp__lab-table">
-                <thead>
-                  <tr>
-                    <th>Compound</th>
-                    <th>Concentration</th>
-                    <th>Verified content</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{product.name}</td>
-                    <td>{product.concentration ?? "—"}</td>
-                    <td>{product.verifiedContent ?? "—"}</td>
-                  </tr>
-                </tbody>
-              </table>
+              {/* A table can't shrink below its min-content width, so on a
+                  320px screen the widest compound values would push past the
+                  container. .table-scroll lets it scroll instead. */}
+              <div className="table-scroll">
+                <table className="pdp__lab-table">
+                  <thead>
+                    <tr>
+                      <th>Compound</th>
+                      <th>Concentration</th>
+                      <th>Verified content</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{product.name}</td>
+                      <td>{product.concentration ?? "—"}</td>
+                      <td>{product.verifiedContent ?? "—"}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <p className="pdp__lab-note">
                 Concentration is measured per ml; verified content reflects the
@@ -325,7 +330,7 @@ export default function ProductDetail() {
                   >
                     <span className="pdp__dose-label">{d.label}</span>
                     <span className="pdp__dose-str">{d.strength}</span>
-                    <span className="pdp__dose-price">£{d.price}</span>
+                    <span className="pdp__dose-price">${d.price}</span>
                   </button>
                 ))}
               </div>
@@ -355,7 +360,7 @@ export default function ProductDetail() {
                   onClick={onAddToCart}
                   className="pdp__buy-btn"
                 >
-                  {added ? "Added to basket ✓" : `Add to basket · £${dose.price * qty}`}
+                  {added ? "Added to basket ✓" : `Add to basket · $${dose.price * qty}`}
                 </Button>
               </div>
 
@@ -446,7 +451,7 @@ export default function ProductDetail() {
                     <h3>{p.name}</h3>
                     <p>{p.summary}</p>
                     <div className="pdp__related-foot">
-                      <span>From £{from}</span>
+                      <span>From ${from}</span>
                       <IconArrow size={14} />
                     </div>
                   </div>

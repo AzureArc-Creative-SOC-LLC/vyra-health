@@ -150,7 +150,7 @@
   border: 0;
   padding: 8px 0;
   color: var(--cream-50);
-  font-size: var(--text-sm);
+  font-size: max(16px, var(--text-sm));
   min-width: 0;
 }
 .site-footer__sub-field input:focus {

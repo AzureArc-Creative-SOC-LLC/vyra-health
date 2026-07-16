@@ -3,10 +3,11 @@
    ============================================================ */
 
 export type CompoundClass =
-  | "GLP-1 receptor agonist"
   | "GLP-1 & GIP dual agonist"
   | "GLP-1, GIP & Glucagon triple agonist"
-  | "Amylin receptor agonist";
+  | "Skin & recovery peptide blend"
+  | "Recovery peptide blend"
+  | "NAD+ coenzyme";
 
 export type ProductBadge =
   | "Most popular"
@@ -19,7 +20,7 @@ export interface DoseOption {
   label: string;
   /** strength shown to the user, e.g. "5 mg" */
   strength: string;
-  /** price in GBP for this dose */
+  /** price in USD for this dose */
   price: number;
   /** how long one vial lasts, plain text */
   supply: string;

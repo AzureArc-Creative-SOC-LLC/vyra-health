@@ -74,7 +74,7 @@ export default function FAQs() {
               <IconChat size={26} />
             </span>
             <div className="faqs__help-copy">
-              <h3>Still have a question?</h3>
+              <h2>Still have a question?</h2>
               <p>
                 Our support team usually responds within one working day. If your query is clinical,
                 a registered clinician will answer directly.
