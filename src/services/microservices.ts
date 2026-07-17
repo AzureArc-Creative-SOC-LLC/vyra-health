@@ -169,10 +169,30 @@ export async function apiVerify(): Promise<ServerUser> {
   return res.user;
 }
 
-export async function apiForgotPassword(email: string): Promise<void> {
-  await request("/api/auth/forgot-password", {
+interface ForgotPasswordResponse {
+  success: boolean;
+  message: string;
+}
+export async function apiForgotPassword(
+  email: string
+): Promise<ForgotPasswordResponse> {
+  return request<ForgotPasswordResponse>("/api/auth/forgot-password", {
     method: "POST",
     body: { email },
+  });
+}
+
+interface ResetPasswordResponse {
+  success: boolean;
+  message: string;
+}
+export async function apiResetPassword(
+  token: string,
+  password: string
+): Promise<ResetPasswordResponse> {
+  return request<ResetPasswordResponse>("/api/auth/reset-password", {
+    method: "POST",
+    body: { token, password },
   });
 }
 

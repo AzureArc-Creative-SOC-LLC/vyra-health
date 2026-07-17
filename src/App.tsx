@@ -24,6 +24,7 @@ const Doctors = lazy(() => import("./pages/Doctors"));
 const Affiliates = lazy(() => import("./pages/Affiliates"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const Login = lazy(() => import("./pages/Login"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const Account = lazy(() => import("./pages/Account"));
@@ -86,6 +87,7 @@ function AnimatedRoutes() {
           <Route path="/affiliates" element={<Affiliates />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />

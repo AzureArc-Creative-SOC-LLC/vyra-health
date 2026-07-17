@@ -648,7 +648,7 @@
 /* ================= PRODUCTS ================= */
 .home__products {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-5);
 }
 .home__products > * {
@@ -656,6 +656,42 @@
 }
 .home__products .product-card {
   flex: 1;
+}
+
+/* Cards in a row must hand off to the image, price and buttons at the same
+   y-position regardless of how many lines the product name takes ("NAD+
+   1,000mg" is one line, "BPC-157 & TB-500 40mg" is three at 1024px).
+
+   Each card's six sections are mapped onto six shared row tracks, so every
+   track is as tall as the tallest card in that row and all cards line up —
+   for any line count, not just the two-line case. Both the <Reveal> wrapper
+   and the card itself opt in, since Reveal makes the card a grandchild of
+   the grid rather than a direct item.
+
+   row-gap is moved onto the card's own margin: the parent's row-gap would
+   otherwise be inserted between all six internal tracks, not just between
+   card rows. Without subgrid, the flex layout above still applies. */
+@supports (grid-template-rows: subgrid) {
+  .home__products {
+    row-gap: 0;
+  }
+  .home__products > * {
+    display: grid;
+    grid-row: span 6;
+    grid-template-rows: subgrid;
+    margin-bottom: var(--space-5);
+  }
+  .home__products .product-card {
+    display: grid;
+    grid-row: span 6;
+    grid-template-rows: subgrid;
+  }
+  /* The badge relied on flex `align-self` to hug the left edge; in a grid
+     that axis is vertical, so it would stretch the full track width. */
+  .home__products .product-card__badge {
+    justify-self: start;
+    align-self: start;
+  }
 }
 .home__products-cta {
   display: flex;

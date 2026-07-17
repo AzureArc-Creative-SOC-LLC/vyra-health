@@ -1,30 +1,61 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Logo from "../components/art/Logo";
 import { useAuth } from "../context/AuthContext";
 import { useSeo } from "../lib/seo";
+import { apiForgotPassword } from "../services/microservices";
 import "./Login.css";
 
-type Mode = "signin" | "signup";
+type Mode = "signin" | "signup" | "forgot";
 
 export default function Login() {
   useSeo({ title: "Log in", description: "Log in to your Vyra Health account.", path: "/login", noindex: true });
   const { user, loading, logIn, signUp, logOut } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const [mode, setMode] = useState<Mode>("signin");
+  const initialMode: Mode =
+    searchParams.get("mode") === "forgot" ? "forgot" : "signin";
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
+  const [info, setInfo] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const isSignup = mode === "signup";
+  const isForgot = mode === "forgot";
+
+  const switchMode = (next: Mode) => {
+    setMode(next);
+    setError("");
+    setInfo("");
+  };
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
+    setInfo("");
+
+    if (isForgot) {
+      setBusy(true);
+      try {
+        const res = await apiForgotPassword(email.trim().toLowerCase());
+        setInfo(
+          res.message ||
+            "If an account exists with this email, a password reset link has been sent."
+        );
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Something went wrong.");
+      } finally {
+        setBusy(false);
+      }
+      return;
+    }
+
     if (isSignup) {
       if (name.trim().length < 2) {
         setError("Please enter your full name.");
@@ -93,42 +124,44 @@ export default function Login() {
         </div>
 
         {/* Mode switch */}
-        <div
-          className="patient-login__tabs"
-          role="tablist"
-          aria-label="Sign in or create account"
-        >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={!isSignup}
-            className={`patient-login__tab${!isSignup ? " is-active" : ""}`}
-            onClick={() => {
-              setMode("signin");
-              setError("");
-            }}
+        {!isForgot && (
+          <div
+            className="patient-login__tabs"
+            role="tablist"
+            aria-label="Sign in or create account"
           >
-            Sign in
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={isSignup}
-            className={`patient-login__tab${isSignup ? " is-active" : ""}`}
-            onClick={() => {
-              setMode("signup");
-              setError("");
-            }}
-          >
-            Create account
-          </button>
-        </div>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === "signin"}
+              className={`patient-login__tab${mode === "signin" ? " is-active" : ""}`}
+              onClick={() => switchMode("signin")}
+            >
+              Sign in
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={isSignup}
+              className={`patient-login__tab${isSignup ? " is-active" : ""}`}
+              onClick={() => switchMode("signup")}
+            >
+              Create account
+            </button>
+          </div>
+        )}
 
         <h1 className="patient-login__title">
-          {isSignup ? "Create your account" : "Welcome back"}
+          {isForgot
+            ? "Reset your password"
+            : isSignup
+            ? "Create your account"
+            : "Welcome back"}
         </h1>
         <p className="patient-login__sub">
-          {isSignup
+          {isForgot
+            ? "Enter your email and we'll send you a link to reset your password."
+            : isSignup
             ? "Just a few details to get started."
             : "Sign in to view your treatment and orders."}
         </p>
@@ -162,19 +195,21 @@ export default function Login() {
             />
           </div>
 
-          <div className="patient-login__field">
-            <label htmlFor="login-password">Password</label>
-            <input
-              id="login-password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              minLength={6}
-              autoComplete={isSignup ? "new-password" : "current-password"}
-            />
-          </div>
+          {!isForgot && (
+            <div className="patient-login__field">
+              <label htmlFor="login-password">Password</label>
+              <input
+                id="login-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                minLength={6}
+                autoComplete={isSignup ? "new-password" : "current-password"}
+              />
+            </div>
+          )}
 
           {isSignup && (
             <div className="patient-login__field">
@@ -193,41 +228,52 @@ export default function Login() {
           )}
 
           {error && <p className="patient-login__error">{error}</p>}
+          {info && <p className="patient-login__info">{info}</p>}
 
           <button
             type="submit"
             className="patient-login__submit"
-            disabled={loading}
+            disabled={loading || busy}
           >
-            {loading
+            {loading || busy
               ? "Please wait…"
+              : isForgot
+              ? "Send reset link"
               : isSignup
               ? "Create account"
               : "Sign In"}
           </button>
         </form>
 
-        {!isSignup && (
-          <a
-            href="#forgot"
+        {mode === "signin" && (
+          <button
+            type="button"
             className="patient-login__link"
-            onClick={(e) => e.preventDefault()}
+            onClick={() => switchMode("forgot")}
           >
             Forgot your password?
-          </a>
+          </button>
         )}
 
         <p className="patient-login__foot">
-          {isSignup ? (
+          {isForgot ? (
+            <>
+              Remembered it?{" "}
+              <button
+                type="button"
+                className="patient-login__foot-btn"
+                onClick={() => switchMode("signin")}
+              >
+                <strong>Back to sign in</strong>
+              </button>
+            </>
+          ) : isSignup ? (
             <>
               Already have an account?{" "}
               <button
                 type="button"
                 className="patient-login__foot-btn"
-                onClick={() => {
-                  setMode("signin");
-                  setError("");
-                }}
+                onClick={() => switchMode("signin")}
               >
                 <strong>Sign in</strong>
               </button>
@@ -238,10 +284,7 @@ export default function Login() {
               <button
                 type="button"
                 className="patient-login__foot-btn"
-                onClick={() => {
-                  setMode("signup");
-                  setError("");
-                }}
+                onClick={() => switchMode("signup")}
               >
                 <strong>Create one</strong>
               </button>

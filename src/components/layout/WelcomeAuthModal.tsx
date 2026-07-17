@@ -141,13 +141,13 @@ export default function WelcomeAuthModal() {
                 Go to patient portal
               </Link>
 
-              <a
-                href="#forgot"
+              <Link
+                to="/login?mode=forgot"
                 className="welcome-auth__link"
-                onClick={(e) => e.preventDefault()}
+                onClick={dismiss}
               >
                 Forgot your password?
-              </a>
+              </Link>
 
               <p className="welcome-auth__foot">
                 Don't have an account?{" "}
